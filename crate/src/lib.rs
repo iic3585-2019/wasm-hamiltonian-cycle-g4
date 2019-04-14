@@ -36,12 +36,7 @@ pub fn search_hamiltonian(matrix: String, dimension: i32) -> Vec<i32>{
 pub fn parse_matrix(matrix: String, dimension: i32) -> Vec<Vec<bool>> {
     
     // Instantiate adjacency matrix
-    let mut graph: Vec<Vec<bool>> = vec![];
-
-    // Fill with empty vectors
-    for row in 0..dimension {
-        graph.push(vec![]);
-    }
+    let mut graph: Vec<Vec<bool>> = vec![vec![]; dimension as usize];
 
     let mut row = 0;
     let mut col = 0;
