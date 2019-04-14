@@ -1,4 +1,7 @@
-fn is_safe(v: i32, graph: &[[bool; 5]; 5], path: &mut [i32], pos: usize) -> bool {
+// Reference: https://www.geeksforgeeks.org/hamiltonian-cycle-backtracking-6/
+
+
+fn is_safe(v: i32, graph: &mut Vec<Vec<bool>>, path: &mut Vec<i32>, pos: usize) -> bool {
   if graph[path[pos - 1] as usize][v as usize] == false {
     return false;
   }
@@ -12,8 +15,8 @@ fn is_safe(v: i32, graph: &[[bool; 5]; 5], path: &mut [i32], pos: usize) -> bool
   return true;
 }
 
-fn solve(graph: &[[bool; 5]; 5], path: &mut [i32; 5], pos: usize) -> bool {
-  if pos == 5 {
+fn solve(graph: &mut Vec<Vec<bool>>, path: &mut Vec<i32>, pos: usize) -> bool {
+  if pos == graph.len() {
     if graph[path[pos - 1] as usize][path[0] as usize] == true {
       return true;
     } else {
@@ -21,8 +24,8 @@ fn solve(graph: &[[bool; 5]; 5], path: &mut [i32; 5], pos: usize) -> bool {
     }
   }
 
-  for v in 1..5 {
-    if is_safe(v, graph, path, pos) {
+  for v in 1..graph.len() {
+    if is_safe(v as i32, graph, path, pos) {
       path[pos] = v as i32;
 
       if solve(graph, path, pos + 1) {
@@ -36,25 +39,25 @@ fn solve(graph: &[[bool; 5]; 5], path: &mut [i32; 5], pos: usize) -> bool {
   return false;
 }
 
-fn ham_cycle(graph: &[[bool; 5]; 5]) -> bool {
-  let mut path: [i32; 5] = [-1, -1, -1, -1, -1];
+fn ham_cycle(graph: &mut Vec<Vec<bool>>) -> Vec<i32> {
+  let mut path = vec![-1; graph.len()];
 
   path[0] = 0;
 
   if solve(graph, &mut path, 1) == false {
     println!("Solution does not exist");
-    return false;
+    path[0] = -1;
   }
 
-  print_solution(&mut path);
+  // print_solution(&mut path, size);
 
-  return true;
+  return path;
 }
 
-fn print_solution(path: &mut [i32]) {
+fn print_solution(path: &mut Vec<i32>) {
   println!("Solution exists");
 
-  for i in 0..5 {
+  for i in 0..path.len() {
     println!("{}", path[i])
   }
 
@@ -62,7 +65,7 @@ fn print_solution(path: &mut [i32]) {
   println!("{}", path[0])
 }
 
-pub fn run() {
+pub fn run() -> Vec<i32> {
   /* Let us create the following graph
       (0)--(1)--(2)
        |   / \   |
@@ -70,13 +73,15 @@ pub fn run() {
        | /     \ |
       (3)-------(4)
   */
-  let graph: [[bool; 5]; 5] = [
-    [false, true, false, true, false],
-    [true, false, true, true, true],
-    [false, true, false, false, true],
-    [true, true, false, false, true],
-    [false, true, true, true, false],
+  let mut graph: Vec<Vec<bool>> = vec![
+    vec![false, true, false, true, false],
+    vec![true, false, true, true, true],
+    vec![false, true, false, false, true],
+    vec![true, true, false, false, true],
+    vec![false, true, true, true, false],
   ];
 
-  ham_cycle(&graph);
+
+  let out: Vec<i32> = ham_cycle(&mut graph);
+  return out;
 }
