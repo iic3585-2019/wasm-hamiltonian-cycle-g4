@@ -1,34 +1,37 @@
-# 🦀🕸 `rust-webpack-template`
+# Hamiltonian cycle with javascript and rust
 
-> **Kickstart your Rust, WebAssembly, and Webpack project!**
+## Descripción general
 
-This template is designed for creating monorepo-style Web applications with
-Rust-generated WebAssembly and Webpack without publishing your wasm to NPM.
+El objetivo es utilizar herramientas para compilar código rust y ejecutarlo usando JavaScript. Se busca escribir un algoritmo que no corra en tiempo polinomial para estudiar la eficacia de un lenguaje de bajo nivel como Rust.
 
-[**📚 Read this template tutorial! 📚**][template-docs]
+En particular, el algoritmo escrito es para encontrar un **ciclo hamiltoniano** dentro de un grafo dado, usando **backtracking**.
 
-Be sure to check out [other `wasm-pack` tutorials online][tutorials] for other
-templates and usages of `wasm-pack`.
+## Enfoque solución
 
-[tutorials]: https://rustwasm.github.io/docs/wasm-pack/tutorials/index.html
-[template-docs]: https://rustwasm.github.io/docs/wasm-pack/tutorials/hybrid-applications-with-webpack/index.html
+Se siguió la estructura general de un algoritmo de backtracking.
 
-## 🚴 Using This Template
+## Requisitos para correr programa
 
-You can use `npm init` to clone this template:
+- [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)
+- [Rust](https://www.rust-lang.org/tools/install)
+- npm
 
-```sh
-npm init rust-webpack my-app
+## Cómo correr programa
+
+Instalar dependencias
+
+```
+npm install
 ```
 
-[Afterwards check out the full documentation for exploring it][template-docs].
+Correr localmente
 
-## 🔋 Batteries Included
+```
+npm run start
+```
 
-This template comes pre-configured with all the boilerplate for compiling Rust
-to WebAssembly and hooking into a Webpack build pipeline.
+Build
 
-* `npm run start` -- Serve the project locally for development at
-  `http://localhost:8080`.
-
-* `npm run build` -- Bundle the project (in production mode).
+```
+npm run build
+```
