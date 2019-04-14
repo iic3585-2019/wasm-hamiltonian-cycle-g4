@@ -65,7 +65,7 @@ fn print_solution(path: &mut Vec<i32>) {
   println!("{}", path[0])
 }
 
-pub fn run() -> Vec<i32> {
+pub fn run(graph: &mut Vec<Vec<bool>>) -> Vec<i32> {
   /* Let us create the following graph
       (0)--(1)--(2)
        |   / \   |
@@ -73,15 +73,15 @@ pub fn run() -> Vec<i32> {
        | /     \ |
       (3)-------(4)
   */
-  let mut graph: Vec<Vec<bool>> = vec![
-    vec![false, true, false, true, false],
-    vec![true, false, true, true, true],
-    vec![false, true, false, false, true],
-    vec![true, true, false, false, true],
-    vec![false, true, true, true, false],
-  ];
+  // let mut graph: Vec<Vec<bool>> = vec![
+  //   vec![false, true, false, true, false],
+  //   vec![true, false, true, true, true],
+  //   vec![false, true, false, false, true],
+  //   vec![true, true, false, false, true],
+  //   vec![false, true, true, true, false],
+  // ];
 
 
-  let out: Vec<i32> = ham_cycle(&mut graph);
+  let out: Vec<i32> = ham_cycle(graph);
   return out;
 }
