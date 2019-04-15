@@ -77,10 +77,12 @@ pub fn create_matrix(edges: String, vertices: i32 ) -> Vec<Vec<bool>> {
 
     for c in edges.split("\n") {
         let nodes = c.split_whitespace().collect::<Vec<&str>>();
-        let a = nodes[0].parse::<usize>().unwrap();;
+        if nodes.len() > 1 {
+            let a = nodes[0].parse::<usize>().unwrap();;
         let b = nodes[1].parse::<usize>().unwrap();;
         graph[a][b] = true;
         graph[b][a] = true;
+        }
     }
 
     

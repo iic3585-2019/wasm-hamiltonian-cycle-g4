@@ -1,15 +1,30 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+ 
+  .links line {
+    stroke: #999;
+    stroke-opacity: 0.6;
+  }
+   
+  .nodes circle {
+    stroke: #fff;
+    stroke-width: 1.5px;
+  }
+   
+</style>
+
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <title>Hamilton Path</title>
   </head>
   <body>
+      <svg width="600" height="400"></svg>
       <label for="nodes"># nodes</label>
       <input type="text" id="nodes" name="nodes" required
              minlength="1" size="10">
-      <br>
-      <br>
+      
       <label for="edges">Edges</label>
       <textarea id="edges" name="edges"
       placeholder="Ex: 1 2"
