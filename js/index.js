@@ -9,12 +9,16 @@ import("../crate/pkg").then(module => {
   const solveButton = document.getElementById("solve");
   
   solveButton.addEventListener("click", _ => {
-    let nodes = document.getElementById("nodes").value;
-    let edges = document.getElementById("edges").value;
-    console.log(module.search_hamiltonian(parseInt(nodes,10), edges))
+    const nodes = document.getElementById("nodes").value;
+    const edges = document.getElementById("edges").value;
+    const result =  module.search_hamiltonian(parseInt(nodes,10), edges);
+    let output = document.getElementById("result");
+    if(result[0] != -1) {
+      let s = result.reduce((a, b) => a+' -> '+b);
+      output.innerHTML = s+' -> '+result[0];
+    } else {
+      output.innerHTML = "No tiene camino hamiltoneano";
+    }
   });
-  // const exampleGraph = "0 1 0 1 0 1 0 1 1 1 0 1 0 0 1 1 1 0 0 1 0 1 1 1 0";
-
-  // console.log(module.search_hamiltonian(exampleGraph, 5));
 });
 

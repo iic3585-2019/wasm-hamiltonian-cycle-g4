@@ -57,9 +57,13 @@ macro_rules! console_log {
 #[wasm_bindgen]
 pub fn search_hamiltonian(dimension: i32, matrix: String) -> Vec<i32>{
     // let mut graph = parse_matrix(matrix, dimension);
+    
     let mut graph = create_matrix(matrix, dimension);
     
-    return hamiltonian::run(&mut graph);
+    let result = hamiltonian::run(&mut graph);
+    
+
+    return result
 }
 
 pub fn create_matrix(edges: String, vertices: i32 ) -> Vec<Vec<bool>> {
