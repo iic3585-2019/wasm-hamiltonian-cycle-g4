@@ -2,9 +2,23 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <title>My awesome Rust, WebAssembly, and Webpack application</title>
+    <title>Hamilton Path</title>
   </head>
   <body>
+      <label for="nodes"># nodes</label>
+      <input type="text" id="nodes" name="nodes" required
+             minlength="1" size="10">
+      <br>
+      <br>
+      <label for="edges">Edges</label>
+      <textarea id="edges" name="edges"
+      placeholder="Ex: 1 2"
+          rows="20" cols="20"></textarea>
+      <br>
+      <br>
+      <button type="button" id="solve">
+      Solve
+      </button>
   </body>
 </html>
 
