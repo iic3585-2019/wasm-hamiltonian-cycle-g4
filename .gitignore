@@ -1,3 +1,4 @@
+dist
 node_modules
 crate/bin
 crate/pkg
