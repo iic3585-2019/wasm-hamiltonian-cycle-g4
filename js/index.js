@@ -21,44 +21,37 @@ import("../crate/pkg").then(module => {
     const result =  module.search_hamiltonian(nodes, edges);
     let output = document.getElementById("result");
 
-
     let array = [];
     if(result[0] != -1) {
       for (let i = 0; i < result.length-1; i++) {
         array.push({source: result[i], target: result[i+1]});
       }
-
-      
       
       let s = result.reduce((a, b) => a+' -> '+b);
       output.innerHTML = s+' -> '+result[0];
     } else {
       output.innerHTML = "No tiene camino hamiltoneano";
     }
-
-
   })
+
+
   updateButton.addEventListener("click", _ => {
     d3.selectAll("svg > *").remove();
     const nodes = parseInt(document.getElementById("nodes").value, 10);
     let nodes_data = [...Array(nodes).keys()].map((x) => { return {id: x.toString()} });
 
     const edges = document.getElementById("edges").value;
-    let edges_data = edges.split("\n").map(x => x.split(" ")).filter(x => x.length > 1).map((a) => { return {source: a[0], target: a[1]}});
+    let edges_data = edges.split("\n")
+                      .map(x => x.split(" "))
+                      .filter(x => x.length > 1)
+                      .map((a) => { return {source: a[0], target: a[1]}});
+
+    
 
     var simulation = d3.forceSimulation().nodes(nodes_data);
     simulation
       .force("charge_force", d3.forceManyBody())
       .force("center_force", d3.forceCenter(width / 2, height / 2));
-
-    // var node = svg.append("g")
-    //   .attr("class", "nodes")
-    //   .selectAll("circle")
-    //   .data(nodes_data)
-    //   .enter()
-    //   .append("circle")
-    //   .attr("r", 7)
-    //   .attr("fill", "red");
 
     var node = svg.append("g")
       .attr("class", "nodes")
@@ -104,7 +97,10 @@ import("../crate/pkg").then(module => {
     function tickActions() {
         node
         .attr("transform", function(d) {
-          return "translate(" + Math.max(7, Math.min(width - 7, d.x)) + "," + Math.max(7, Math.min(height - 7, d.y)) + ")";
+          return "translate(" + 
+            Math.max(7, Math.min(width - 7, d.x)) 
+            + "," 
+            + Math.max(7, Math.min(height - 7, d.y)) + ")";
         })
 
         link

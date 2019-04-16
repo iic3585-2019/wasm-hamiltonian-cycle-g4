@@ -52,7 +52,6 @@ fn ham_cycle(graph: &mut Vec<Vec<bool>>) -> Vec<i32> {
   path[0] = 0;
 
   if solve(graph, &mut path, 1) == false {
-    println!("Solution does not exist");
     path[0] = -1;
   }
 
